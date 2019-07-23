@@ -3,11 +3,13 @@ package guru.springframework.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Book {
@@ -16,7 +18,8 @@ public class Book {
 	private Long id;
 	private String title;
 	private String isbn;
-	private String publisher;
+	@OneToOne(cascade=CascadeType.ALL)
+	private Publisher publisher;
 	@ManyToMany(mappedBy="books")
 	private List<Author> authors = new ArrayList<>();
 
@@ -48,11 +51,12 @@ public class Book {
 		this.isbn = isbn;
 	}
 
-	public String getPublisher() {
+
+	public Publisher getPublisher() {
 		return publisher;
 	}
 
-	public void setPublisher(String publisher) {
+	public void setPublisher(Publisher publisher) {
 		this.publisher = publisher;
 	}
 

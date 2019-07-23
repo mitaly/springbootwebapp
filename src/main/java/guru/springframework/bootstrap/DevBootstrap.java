@@ -7,9 +7,11 @@ import org.springframework.stereotype.Component;
 
 import guru.springframework.domain.Author;
 import guru.springframework.domain.Book;
+import guru.springframework.domain.Publisher;
 import guru.springframework.repositories.AuthorRepository;
 
 @Component
+//ApplicationListener will react to any event and will execute onApplicationEvent method
 public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent>{
 	@Autowired
 	private AuthorRepository authorRepository;
@@ -24,12 +26,12 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent>{
 		Book book1 = new Book();
 		book1.setIsbn("2323");
 		book1.setTitle("The subtle art of not giving a fuck");
-		book1.setPublisher("HarperOne");
+		book1.setPublisher(new Publisher("HarperOne", "NY"));
 		
 		Book book2 = new Book();
 		book2.setIsbn("434");
 		book2.setTitle("Rich dad poor dad");
-		book2.setPublisher("Warner Books Ed");
+		book2.setPublisher(new Publisher("Warner Books Ed", "NY"));
 		
 		Author author1 = new Author();
 		author1.setFirstName("Mark");
