@@ -9,9 +9,11 @@ import guru.springframework.services.GreetingService;
 @RestController
 public class GreetingController {
 
-	@Autowired
 	GreetingService greetingService;
 	
+	public GreetingController(GreetingService greetingService) {
+		this.greetingService = greetingService;
+	}
 	@GetMapping(value="greet")
 	public void greet() {
 		greetingService.greet();
