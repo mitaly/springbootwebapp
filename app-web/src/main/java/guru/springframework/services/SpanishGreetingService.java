@@ -1,12 +1,14 @@
 package guru.springframework.services;
 
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Service;
+import guru.springframework.repositories.GreetingRepository;
 
-@Service
-@Profile(value="spanish")
 public class SpanishGreetingService extends GreetingService {
 
+	private GreetingRepository greetingRepository;
+	
+	public SpanishGreetingService(final GreetingRepository greetingRepository) {
+		this.greetingRepository = greetingRepository;
+	}
 	@Override
 	public void greet() {
 		System.out.println("Spanish Greeting");
